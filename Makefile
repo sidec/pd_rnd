@@ -6,7 +6,8 @@ LIBRARY_NAME = pdgsl
 # add your .c source files, one object per file, to the SOURCES
 # variable, help files will be included automatically, and for GUI
 # objects, the matching .tcl file too
-SOURCES =  mt19937.c
+SOURCES =  mt19937.c \
+	pdf.c
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
@@ -35,7 +36,7 @@ UNITTESTS =
 #
 #------------------------------------------------------------------------------#
 
-ALL_CFLAGS = -I"$(PD_INCLUDE)":./include
+ALL_CFLAGS = -I"$(PD_INCLUDE)" -I"$(shell pwd)/include"
 ALL_LDFLAGS = -lgsl -lgslcblas
 SHARED_LDFLAGS =
 ALL_LIBS = -lgsl -lgslcblas
