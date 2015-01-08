@@ -61,7 +61,9 @@ void mt19937_free(t_mt19937 * x){
 void * mt19937_new(t_symbol * s, int argc, t_atom * argv){
   t_mt19937 * x = (t_mt19937 *) pd_new(mt19937_class);
 
+
   long seed = (argc==0)? (long)(rand()*LONG_MAX) : (long)atom_getint(argv);
+
   x->r = gsl_rng_alloc(gsl_rng_mt19937);
   gsl_rng_set(x->r,seed);
 

@@ -6,8 +6,10 @@ LIBRARY_NAME = pdgsl
 # add your .c source files, one object per file, to the SOURCES
 # variable, help files will be included automatically, and for GUI
 # objects, the matching .tcl file too
-SOURCES =  mt19937.c \
-	pdf.c
+SOURCES = pdf.c  mt19937.c \
+	rnd.c
+
+
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
