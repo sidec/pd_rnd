@@ -1,0 +1,24 @@
+#N canvas 915 303 343 256 10;
+#X obj 58 167 dac~;
+#X obj 84 132 vline~;
+#X obj 57 132 *~;
+#X msg 83 84 1 2 \, 0 2 10;
+#X obj 57 110 osc~ 55;
+#X floatatom 83 37 5 0 0 0 - - -, f 5;
+#X msg 172 152 \; pd dsp \$1;
+#X obj 172 132 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 83 59 dust 12;
+#X floatatom 135 110 5 0 0 0 - - -, f 5;
+#X obj 135 34 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X connect 1 0 2 1;
+#X connect 2 0 0 0;
+#X connect 2 0 0 1;
+#X connect 3 0 1 0;
+#X connect 4 0 2 0;
+#X connect 5 0 8 0;
+#X connect 7 0 6 0;
+#X connect 8 0 3 0;
+#X connect 9 0 4 0;
+#X connect 10 0 8 1;
