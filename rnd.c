@@ -1,5 +1,6 @@
 #include "m_pd.h"
 #include <stdio.h>
+#include <math.h>
 #include <limits.h>
 #include <string.h>
 #include <gsl/gsl_rng.h>
@@ -73,7 +74,7 @@ void rnd_free(t_rnd * x){
 void * rnd_new(t_symbol * s, int argc, t_atom * argv){
   t_rnd * x = (t_rnd *) pd_new(rnd_class);
 
-  long seed = (argc==2)? (long)atom_getint(argv+1):(long)(rand()*INT_MAX);
+  long seed = (argc==2)? (long)atom_getint(argv+1):abs((long)(rand()*LONG_MAX));
 
   t_symbol * algorithm = atom_getsymbol(argv);
 
