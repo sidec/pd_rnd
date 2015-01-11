@@ -1,12 +1,12 @@
 ## Pd library template version 1.0.14
 # For instructions on how to use this template, see:
 #  http://puredata.info/docs/developer/MakefileTemplate
-LIBRARY_NAME = pdgsl
+LIBRARY_NAME = gsl_rnd
 
 # add your .c source files, one object per file, to the SOURCES
 # variable, help files will be included automatically, and for GUI
 # objects, the matching .tcl file too
-SOURCES = pdf.c  mt19937.c \
+SOURCES = tabplot.c \
 	rnd.c
 
 
@@ -16,7 +16,7 @@ SOURCES = pdf.c  mt19937.c \
 PDOBJECTS =
 
 # example patches and related files, in the 'examples' subfolder
-EXAMPLES =  bothtogether.pd
+EXAMPLES =
 
 # manuals and related files, in the 'manual' subfolder
 MANUAL = manual.txt
@@ -25,7 +25,13 @@ MANUAL = manual.txt
 # list them here.  This can be anything from header files, test patches,
 # documentation, etc.  README.txt and LICENSE.txt are required and therefore
 # automatically included
-EXTRA_DIST =
+EXTRA_DIST = 	include/gsl/gsl_cblas.h \
+	include/gsl/gsl_types.h \
+	include/gsl/gsl_errno.h \
+	include/gsl/gsl_rng.h \
+	include/gsl/gsl_randist.h \
+
+
 
 # unit tests and related files here, in the 'unittests' subfolder
 UNITTESTS =

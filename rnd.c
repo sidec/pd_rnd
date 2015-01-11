@@ -14,8 +14,6 @@ typedef struct _rnd {
 } t_rnd;
 
 
-
-
 // poisson sampling
 void rnd_poisson(t_rnd * x, t_floatarg mu){
   unsigned int k = gsl_ran_poisson(x->r, (double)mu);
@@ -50,6 +48,36 @@ void rnd_uniform_int(t_rnd * x, t_floatarg n){
   unsigned long int k = gsl_rng_uniform_int(x->r, (unsigned long int)n);
   outlet_float(x->x_obj.ob_outlet, (float)k);
 }
+
+// pareto
+void rnd_pareto(t_rnd * x, t_floatarg alpha, t_floatarg scale){
+  double a = (alpha==0)? 1.16 : abs((double)a);
+  double s = (scale==0)? 1.0 : (double)scale;
+  double k = gsl_ran_pareto(x->r, a, s);
+  outlet_float(x->x_obj.ob_outlet, (float)k);
+}
+// weibull
+void rnd_weibull(t_rnd * x, t_floatarg lambda, t_floatarg kappa){
+  double l = (lambda==0)? 1.0 : (double)lambda;
+  double k = (kappa==0)? 1.0 : (double)kappa;
+  double random_x = gsl_ran_weibull(x->r, l, k);
+  outlet_float(x->x_obj.ob_outlet, (float)random_x);
+}
+// lognormal
+void rnd_lognormal(t_rnd * x, t_floatarg zeta, t_floatarg sigma){
+  double s = (sigma==0)? 1.0 : (double)sigma;
+  double random_x = gsl_ran_lognormal(x->r, zeta, s);
+  outlet_float(x->x_obj.ob_outlet, (float)random_x);
+}
+// levy skew
+void rnd_levy_skew(t_rnd * x, t_floatarg scale, t_floatarg alpha, t_floatarg beta){
+  double c = (scale==0)? 1 : (double)scale;
+  double a = (alpha==0)? 1.7 : (double)alpha;
+  double random_x = gsl_ran_levy_skew(x->r, c, a, beta);
+  outlet_float(x->x_obj.ob_outlet, (float)random_x);
+}
+
+
 
 
 
@@ -134,6 +162,28 @@ void rnd_setup(void){
   class_addmethod(rnd_class,
                   (t_method)rnd_seed, gensym("seed"),
                   A_DEFFLOAT, 0);
+
+   // pareto
+  class_addmethod(rnd_class,
+                  (t_method)rnd_pareto, gensym("pareto"),
+                  A_DEFFLOAT, A_DEFFLOAT, 0);
+
+ // weibull
+  class_addmethod(rnd_class,
+                  (t_method)rnd_weibull, gensym("weibull"),
+                  A_DEFFLOAT, A_DEFFLOAT, 0);
+ // lognormal
+  class_addmethod(rnd_class,
+                  (t_method)rnd_lognormal, gensym("lognormal"),
+                  A_DEFFLOAT, A_DEFFLOAT, 0);
+
+ // levy_skew
+  class_addmethod(rnd_class,
+                  (t_method)rnd_levy_skew, gensym("levy_skew"),
+                  A_DEFFLOAT, A_DEFFLOAT, A_DEFFLOAT, 0);
+
+
+
 
   // help file
   class_sethelpsymbol(rnd_class, gensym("rnd-help"));
