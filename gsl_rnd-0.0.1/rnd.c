@@ -119,7 +119,7 @@ void * rnd_new(t_symbol * s, int argc, t_atom * argv){
   gsl_rng_set(x->r,seed);
 
   char info[80];
-  sprintf(info,"%s generator with seed %d has been initialized.\n", gsl_rng_name(x->r), (int)seed);
+  sprintf(info,"%s generator with seed %d has been initiated.\n", gsl_rng_name(x->r), (int)seed);
   post(info);
 
   outlet_new(&x->x_obj, &s_float);
