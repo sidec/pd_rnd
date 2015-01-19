@@ -22,20 +22,20 @@ void rnd_poisson(t_rnd * x, t_floatarg mu){
 
 // normal sampling
 void rnd_gaussian(t_rnd * x, t_floatarg sigma, t_floatarg mu){
-  double s = (sigma==0)? 1.0 : (double)sigma;
+  double s = (sigma==0)? 1.0 : fabs((double)sigma);
   double k = gsl_ran_gaussian(x->r, s);
   outlet_float(x->x_obj.ob_outlet, mu+(float)k);
 }
 // exponential
 void rnd_exponential(t_rnd * x, t_floatarg lambda){
-  double l = (lambda==0)? 1.0 : (double)lambda;
+  double l = (lambda==0)? 1.0 : fabs((double)lambda);
   double k = gsl_ran_exponential(x->r, l);
   outlet_float(x->x_obj.ob_outlet, (float)k);
 }
 // gamma
 void rnd_gamma(t_rnd * x, t_floatarg a, t_floatarg b){
-  double kappa = (a==0)? 2.0 : (double)a;
-  double theta = (b==0)? 2.0 : (double)b;
+  double kappa = (a==0)? 2.0 : fabs((double)a);
+  double theta = (b==0)? 2.0 : fabs((double)b);
   double k = gsl_ran_gamma(x->r, kappa, theta);
   outlet_float(x->x_obj.ob_outlet, (float)k);
 }
@@ -51,28 +51,28 @@ void rnd_uniform_int(t_rnd * x, t_floatarg n){
 
 // pareto
 void rnd_pareto(t_rnd * x, t_floatarg alpha, t_floatarg scale){
-  double a = (alpha==0)? 1.16 : abs((double)a);
-  double s = (scale==0)? 1.0 : (double)scale;
+  double a = (alpha==0)? 1.16 : fabs((double)a);
+  double s = (scale==0)? 1.0 : fabs((double)scale);
   double k = gsl_ran_pareto(x->r, a, s);
   outlet_float(x->x_obj.ob_outlet, (float)k);
 }
 // weibull
 void rnd_weibull(t_rnd * x, t_floatarg lambda, t_floatarg kappa){
-  double l = (lambda==0)? 1.0 : (double)lambda;
-  double k = (kappa==0)? 1.0 : (double)kappa;
+  double l = (lambda==0)? 1.0 : fabs((double)lambda);
+  double k = (kappa==0)? 1.0 : fabs((double)kappa);
   double random_x = gsl_ran_weibull(x->r, l, k);
   outlet_float(x->x_obj.ob_outlet, (float)random_x);
 }
 // lognormal
 void rnd_lognormal(t_rnd * x, t_floatarg zeta, t_floatarg sigma){
-  double s = (sigma==0)? 1.0 : (double)sigma;
+  double s = (sigma==0)? 1.0 : fabs((double)sigma);
   double random_x = gsl_ran_lognormal(x->r, zeta, s);
   outlet_float(x->x_obj.ob_outlet, (float)random_x);
 }
 // levy skew
 void rnd_levy_skew(t_rnd * x, t_floatarg scale, t_floatarg alpha, t_floatarg beta){
-  double c = (scale==0)? 1 : (double)scale;
-  double a = (alpha==0)? 1.7 : (double)alpha;
+  double c = (scale==0)? 1 : fabs((double)scale);
+  double a = (alpha==0)? 1.7 : fabs((double)alpha);
   double random_x = gsl_ran_levy_skew(x->r, c, a, beta);
   outlet_float(x->x_obj.ob_outlet, (float)random_x);
 }

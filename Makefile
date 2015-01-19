@@ -7,7 +7,10 @@ LIBRARY_NAME = gsl_rnd
 # variable, help files will be included automatically, and for GUI
 # objects, the matching .tcl file too
 SOURCES = tabplot.c \
-	rnd.c
+	rnd.c \
+	tabrnd.c \
+	gaussian~.c \
+	tabperm.c
 
 
 
@@ -25,11 +28,17 @@ MANUAL = manual.txt
 # list them here.  This can be anything from header files, test patches,
 # documentation, etc.  README.txt and LICENSE.txt are required and therefore
 # automatically included
-EXTRA_DIST = 	include/gsl/gsl_cblas.h \
-	include/gsl/gsl_types.h \
-	include/gsl/gsl_errno.h \
-	include/gsl/gsl_rng.h \
-	include/gsl/gsl_randist.h \
+EXTRA_DIST = tabplot.l_ia64 \
+	rnd.l_ia64 \
+	 libgslcblas.so \
+	libgslcblas.so.0 \
+	libgslcblas.so.0.0.0 \
+	libgsl.so libgsl.so.0.7.0
+# include/gsl/gsl_cblas.h \
+# include/gsl/gsl_types.h \
+# include/gsl/gsl_errno.h \
+# include/gsl/gsl_rng.h \
+# include/gsl/gsl_randist.h \
 
 
 
