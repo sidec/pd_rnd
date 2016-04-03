@@ -10,7 +10,9 @@ SOURCES = tabplot.c \
 	rnd.c \
 	tabrnd.c \
 	gaussian~.c \
-	tabperm.c
+	tabperm.c \
+	tabks.c \
+	tabks2.c
 
 
 
@@ -54,7 +56,7 @@ UNITTESTS =
 #------------------------------------------------------------------------------#
 
 ALL_CFLAGS = -I"$(PD_INCLUDE)" -I"$(shell pwd)/include"
-ALL_LDFLAGS = -lgsl -lgslcblas
+ALL_LDFLAGS = -L"$(shell pwd)" -lgsl -lgslcblas
 SHARED_LDFLAGS =
 ALL_LIBS = -lgsl -lgslcblas
 
